@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3f6372d-cbe2-4977-8d28-770a1834082d" name="Changes" comment="The initial commit. This includes converting an image into depth map using MiDaS and generate a 3d point cloud based on that.">
-      <change afterPath="$PROJECT_DIR$/code/normal_to_spatial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/depth_estimation_app/save.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a3f6372d-cbe2-4977-8d28-770a1834082d" name="Changes" comment="This commit involves the model to use it in the web app which allows us to upload any picture and get the depth map and 3d point cloud and allows us to download the point cloud.">
+      <change afterPath="$PROJECT_DIR$/code/depth_anything_v2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/simple_project_normal_to_3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_app/simple_project_normal_to_3d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Depth-Anything-V2/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Depth-Anything-V2/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/normal_to_spatial.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/normal_to_spatial.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +26,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Depth-Anything-V2" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -52,7 +53,9 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -87,11 +90,31 @@
       <option name="project" value="LOCAL" />
       <updated>1730264052610</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="This commit involves the model to use it in the web app which allows us to upload any picture and get the depth map and 3d point cloud and allows us to download the point cloud.">
+      <option name="closed" value="true" />
+      <created>1730554850394</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730554850394</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="The initial commit. This includes converting an image into depth map using MiDaS and generate a 3d point cloud based on that." />
-    <option name="LAST_COMMIT_MESSAGE" value="The initial commit. This includes converting an image into depth map using MiDaS and generate a 3d point cloud based on that." />
+    <MESSAGE value="This commit involves the model to use it in the web app which allows us to upload any picture and get the depth map and 3d point cloud and allows us to download the point cloud." />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit involves the model to use it in the web app which allows us to upload any picture and get the depth map and 3d point cloud and allows us to download the point cloud." />
   </component>
 </project>

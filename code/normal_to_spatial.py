@@ -1,98 +1,83 @@
 import cv2
 import torch
-import urllib.request
 import numpy as np
 import matplotlib.pyplot as plt
-import open3d as o3d
 
 
-def depth_to_pointcloud(depth_map, rgb_image, focal_length=1000):
-    height, width = depth_map.shape
-
-    # Create grid of image coordinates
-    x_grid, y_grid = np.meshgrid(range(width), range(height))
-
-    # Calculate 3D coordinates
-    Z = depth_map.reshape(-1)
-    X = ((x_grid.reshape(-1) - width / 2) * Z) / focal_length
-    Y = ((y_grid.reshape(-1) - height / 2) * Z) / focal_length
-
-    # Stack coordinates
-    points = np.stack([X, Y, Z], axis=1)
-
-    # Create Open3D point cloud
-    pcd = o3d.geometry.PointCloud()
-    pcd.points = o3d.utility.Vector3dVector(points)
-
-    # Add colors if RGB image is provided
-    if rgb_image is not None:
-        colors = rgb_image.reshape(-1, 3) / 255.0
-        pcd.colors = o3d.utility.Vector3dVector(colors)
-
-    return pcd
-
-
-def generate_depth_map_and_pointcloud(image_path):
-    # Load model
+# Load MiDaS depth estimation model
+def load_depth_model():
     model_type = "DPT_Large"  # MiDaS v3 - Large
-
     midas = torch.hub.load("intel-isl/MiDaS", model_type)
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-    midas.to(device)
-    midas.eval()
-
+    midas.to(device).eval()
     midas_transforms = torch.hub.load("intel-isl/MiDaS", "transforms")
     transform = midas_transforms.dpt_transform
+    return midas, transform, device
 
-    # Load and preprocess image
+
+# Generate depth map from an image
+def generate_depth_map(image_path, midas, transform, device):
     img = cv2.imread(image_path)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    input_batch = transform(img_rgb).to(device)
 
-    input_batch = transform(img).to(device)
-
-    # Generate depth map
     with torch.no_grad():
         prediction = midas(input_batch)
-        prediction = torch.nn.functional.interpolate(
-            prediction.unsqueeze(1),
-            size=img.shape[:2],
-            mode="bicubic",
-            align_corners=False,
-        ).squeeze()
+        depth_map = torch.nn.functional.interpolate(
+            prediction.unsqueeze(1), size=img.shape[:2], mode="bicubic", align_corners=False
+        ).squeeze().cpu().numpy()
 
-    depth_map = prediction.cpu().numpy()
-
-    # Normalize depth map
+    # Normalize depth map for visualization
     depth_map = (depth_map - depth_map.min()) / (depth_map.max() - depth_map.min())
-    depth_map_viz = (depth_map * 255).astype(np.uint8)
+    return img, depth_map
 
-    # Create point cloud
-    pcd = depth_to_pointcloud(depth_map, img)
 
-    # Apply colormap for visualization
-    depth_colored = cv2.applyColorMap(depth_map_viz, cv2.COLORMAP_INFERNO)
+# Generate stereo (left and right) images from RGB and depth map
+def generate_stereo_images(rgb_image, depth_map, offset_factor=0.02):
+    height, width, _ = rgb_image.shape
+    left_image = np.zeros_like(rgb_image)
+    right_image = np.zeros_like(rgb_image)
 
-    # Display results
-    plt.figure(figsize=(12, 6))
+    for y in range(height):
+        for x in range(width):
+            depth_value = depth_map[y, x]  # Depth value in range 0-1
+            offset = int(depth_value * offset_factor * width)
 
-    plt.subplot(121)
-    plt.imshow(img)
-    plt.title('Original Image')
+            if x - offset >= 0:
+                left_image[y, x - offset] = rgb_image[y, x]
+            if x + offset < width:
+                right_image[y, x + offset] = rgb_image[y, x]
+
+    return left_image, right_image
+
+
+# Main function to load model, generate depth map, and create stereo images
+def main(image_path):
+    midas, transform, device = load_depth_model()
+    rgb_image, depth_map = generate_depth_map(image_path, midas, transform, device)
+
+    # Generate left and right stereo images
+    left_image, right_image = generate_stereo_images(rgb_image, depth_map)
+
+    # Display the original, left, and right images
+    plt.figure(figsize=(18, 6))
+    plt.subplot(131)
+    plt.imshow(rgb_image)
+    plt.title("Original Image")
     plt.axis('off')
 
-    plt.subplot(122)
-    plt.imshow(cv2.cvtColor(depth_colored, cv2.COLOR_BGR2RGB))
-    plt.title('Depth Map')
+    plt.subplot(132)
+    plt.imshow(left_image)
+    plt.title("Left Eye View")
+    plt.axis('off')
+
+    plt.subplot(133)
+    plt.imshow(depth_map)
+    plt.title("Right Eye View")
     plt.axis('off')
 
     plt.show()
 
-    # Visualize point cloud
-    o3d.visualization.draw_geometries([pcd])
 
-    return depth_map, pcd
-
-
-# Example usage
-image_path = "../data/test.jpg"  # Replace with your image path
-depth_map, point_cloud = generate_depth_map_and_pointcloud(image_path)
+# Run the function
+main("../data/desk.png")
