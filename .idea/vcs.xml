@@ -5,5 +5,6 @@
     <mapping directory="$PROJECT_DIR$/Depth-Anything-V2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Depth-Anything-V2/lama" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Depth-Anything-V2/lama/Lama" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Depth-Anything-V2/nerf-pytorch" vcs="Git" />
   </component>
 </project>
