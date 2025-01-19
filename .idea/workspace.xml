@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3f6372d-cbe2-4977-8d28-770a1834082d" name="Changes" comment="This commit involves the Depth Anything 2 model implemented with stereo generation need to run run.py in depth_map environment.">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="a3f6372d-cbe2-4977-8d28-770a1834082d" name="Changes" comment="MESH generated in script.py run the code python script.py --img-path ..\data\img.png">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Depth-Anything-V2/nerf-pytorch/run_nerf.py" beforeDir="false" afterPath="$PROJECT_DIR$/Depth-Anything-V2/nerf-pytorch/run_nerf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Depth-Anything-V2/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Depth-Anything-V2/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Depth-Anything-V2/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/Depth-Anything-V2/script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,16 +45,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/gurur/PycharmProjects/pythonProject/data",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gurur/PycharmProjects/pythonProject/data&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gurur\PycharmProjects\pythonProject\data" />
@@ -108,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732796582901</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="MESH generated in script.py run the code python script.py --img-path ..\data\img.png">
+      <option name="closed" value="true" />
+      <created>1734614178471</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734614178471</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +132,7 @@
     <MESSAGE value="The initial commit. This includes converting an image into depth map using MiDaS and generate a 3d point cloud based on that." />
     <MESSAGE value="This commit involves the model to use it in the web app which allows us to upload any picture and get the depth map and 3d point cloud and allows us to download the point cloud." />
     <MESSAGE value="This commit involves the Depth Anything 2 model implemented with stereo generation need to run run.py in depth_map environment." />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit involves the Depth Anything 2 model implemented with stereo generation need to run run.py in depth_map environment." />
+    <MESSAGE value="MESH generated in script.py run the code python script.py --img-path ..\data\img.png" />
+    <option name="LAST_COMMIT_MESSAGE" value="MESH generated in script.py run the code python script.py --img-path ..\data\img.png" />
   </component>
 </project>
